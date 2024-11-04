@@ -1,0 +1,13 @@
+agent = models.ForeignKey("Agent", on_delete=models.CASCADE, null=True, default=) 
+CASCADE = (Whin you delete agent the lead will be delete to)
+SET_NULL = (set value of ForeignKey to null ) but you should do null=True
+from django.contrib.auth import get_user_model = (grab the user model provid by django)
+    ==> user = get_user_model()
+
+the foreignKey (let create a many Agent for a user)
+
+for create one agent for every one user ==> models.OneToOneField
+
+from django.contrib.auth.models import AbstractUser ==> (Username and password are required. Other fields are optional.)
+
+AUTH_USER_MODEL = 'leads.User' #tell django that we have a own custom user model

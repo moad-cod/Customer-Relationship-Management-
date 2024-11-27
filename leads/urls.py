@@ -1,4 +1,4 @@
-from django.urls import path 
+from django.urls import path
 # from .views import (lead_detail, lead_create, lead_update, lead_delete) ==> Function Based views 
 from .views import (LeadListView, LeadDetailView, LeadCreateView, LeadUpdateView, LeadDeleteView) #==> Class Based Views
 app_name="leads"
@@ -9,3 +9,4 @@ urlpatterns = [
     path('<int:pk>/delete/', LeadDeleteView.as_view(), name='lead-delete'),
     path('create/', LeadCreateView.as_view(), name='lead-create'), 
 ]
+

@@ -1,6 +1,56 @@
 {% extends 'base.html' %}
-
 {%block content%}
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+<form method="post" action="{% url 'leads:lead-create' %}" class="w-full items-center justify-center  max-w-lg">
+    {% csrf_token %}
+    <h2 class="text-2x1 font-bold text-center mb-6">Create New Lead</h2>
+    <div class="flex  flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+          First Name
+        </label>
+        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+        name="first_name" 
+        type="text" 
+        placeholder="first_name" 
+        >
+      </div>
+      <div class="w-full md:w-1/2 px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last-name">
+          Last_Name
+        </label>
+        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+        name="last_name"  
+        type="text" 
+        placeholder="Last_name">
+      </div>
+      <div class="mb-6 ml-3">
+        <label for="age" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Age</label>
+        <input 
+          type="number" 
+          name="age"  
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+          placeholder="age">
+      </div>
+      <div class="w-full md:w-1/2 px-3 ml-10">
+        <label for="agent" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Agent</label>
+        <select 
+          name="agent"  
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500">
+          {% for agent in form.agent.field.queryset %}
+            <option value="{{ agent.id }}" {% if agent.id == form.agent.value %}selected{% endif %}>
+              {{ agent }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-indigo-500 text-white py-3 rounded-lg hover:bg-indigo-600 transition-colors duration-300">
+        Submit
+      </button>
+
+    </div>
+{%endblock content%}
+{% comment %} {%block content%}
     <a href="{% url 'leads:lead-list' %}">Go back to leads </a>
     <hr/>
     <h1>Create a new lead</h1>
@@ -9,4 +59,4 @@
         {{ form.as_p }}
         <button type="submut">Submit</button>
     </form>
-{%endblock content%}
+{%endblock content%} {% endcomment %}

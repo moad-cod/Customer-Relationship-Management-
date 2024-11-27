@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'leads',
+    'members',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,12 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 STATIC_ROOT = "static_root"
+
+import os
+
+# Media files (uploads) configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -134,3 +141,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'elbawmoad@gmail.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'mamita1249'  # Your email password
+LOGIN_REDIRECT_URL = "/leads"
+LOGOUT_REDIRECT_URL = '/'

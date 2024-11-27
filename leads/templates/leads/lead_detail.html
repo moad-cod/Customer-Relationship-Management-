@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {%block content%}
 <section class="text-gray-600 body-font overflow-hidden">
@@ -34,7 +35,7 @@
           </button>
         </div>
       </div>
-      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+        <img alt="ecommerce" class="w-full max-w-[50%] h-auto object-contain object-left rounded" src="{%static 'images/1.png' %}">
     </div>
   </div>
 </section>

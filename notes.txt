@@ -11,3 +11,77 @@ for create one agent for every one user ==> models.OneToOneField
 from django.contrib.auth.models import AbstractUser ==> (Username and password are required. Other fields are optional.)
 
 AUTH_USER_MODEL = 'leads.User' #tell django that we have a own custom user model
+
+==> Authenticate 
+        LOGIN_REDIRECT_URL = "/leads"
+            request.user.is_authentifcated: Checks if the user is logged in.
+            request.user.username: Gets the username of the logged-in user.
+
+
+        href="{% url 'login' %}" add link 
+
+        //Login authenticate
+        </nav>
+              {% if request.user.is_authenticated %}
+                <p>You are logged in: {{ request.user.username }}</p>
+              {%else%}
+              <a href="{% url 'login' %}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+                Login
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              {%endif%}
+        </div>
+        {% if not request.user.is_authenticated %}
+        {%endif%}
+        {% if request.user.is_authenticated %}
+        {%else%}
+        {%endif%}
+
+        
+==> Views With functons
+        # def landing_page(request):
+        #     return render(request, 'landing.html')
+        # def lead_list(request):
+        #     Leads = Lead.objects.all()
+        #     context = {
+        #         "Leads": Leads
+        #     }
+        #     return render(request, "leads/lead_list.html", context)
+        # def lead_detail(request, pk):
+        #     lead = Lead.objects.get(id=pk)
+        #     context = {
+        #         "lead": lead
+        #     }
+            
+        #     return render(request, "leads/lead_detail.html", context)
+        # def lead_create(request):
+        #     form = LeadModelForm() # if request.method !== "POST" form is empty
+        #     if request.method == "POST":
+        #         print("Receiving a post request") 
+        #         form = LeadModelForm(request.POST)
+        #         if form.is_valid():
+        #             form.save() #when we specify the model we working in (forms in LeadModelForm)
+        #             return redirect("/leads")
+        #     context= {
+        #         "form": form
+        #     }
+        #     return render(request, "leads/lead_create.html", context)
+        # def lead_update(request, pk):
+        #     lead = Lead.objects.get(id=pk)
+        #     form = LeadModelForm(instance=lead) #updating instead a creating anew lead
+        #     if request.method == "POST":
+        #         form = LeadModelForm(request.POST)      
+        #         if form.is_valid():
+        #             form.save()
+        #             return redirect("/leads")
+        #     context = {
+        #         "form": form,
+        #         "lead": lead
+        #      }
+        #     return render(request, "leads/lead_update.html", context)
+        # def lead_delete(request, pk):
+        #     lead = Lead.objects.get(id=pk)
+        #     lead.delete()
+        #     return redirect("/leads")

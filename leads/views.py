@@ -35,9 +35,17 @@ class LeadCreateView(generic.CreateView):
     def form_valid(self, form):
         print("Form data: ", form.cleaned_data)
         for field, value in form.cleaned_data.items():
+        # field is the name of the field in the form (for example, username, email, etc.)
+        # value is the actual data submitted for that field, after being cleaned (validated and converted to the correct type).
+        # type(value): This gives the type of the value
             print(f"{field}: {type(value)}")
         return super().form_valid(form)
-    
+        # output 
+        # Form data:  {'first_name': 'reda', 'last_name': 'lmaz', 'age': 20, 'agent': <Agent: elbawmoad@gmail.com>}
+        # first_name: <class 'str'>
+        # last_name: <class 'str'>
+        # age: <class 'int'>
+        # agent: <class 'leads.models.Agent'>s
     
 
 class LeadUpdateView(generic.UpdateView):
